@@ -1,0 +1,22 @@
+<div [hidden]="!active" class="container">
+  <div class="row" *ngFor="let favourite of favourites | orderby:'rank'">
+    <div class="card card-block">
+      <h5 class="card-title">
+        <div class="row">
+          <span class="col-2 p-2">{{favourite.rank}}: </span>
+          <span class="col-6 card-text p-2"><small>{{favourite.title}}</small></span>
+          <span class="clo-1 btn p-2"><a (click)="removeFav(favourite._id)">×</a></span>
+        </div>
+      </h5>
+    </div>
+  </div>
+
+  <form (submit)="addFav()">
+    <input type="number" name="newrank" [(ngModel)]="model.newrank" #newrank="ngModel" placeholder="New fav's rank" required/>
+    <input type="text" name="newtitle" [(ngModel)]="model.newtitle" #newtitle="ngModel" placeholder="New fav's title" required/>
+    <button [disabled]="loading" class="btn btn-primary" type="submit">Add</button>
+  </form>   
+  <!-- <ul>   
+    <li *ngFor="#name of list.get(); #i = index;"><span>{{name}}</span>&nbsp;<a (click)="list.remove(i)">remove</a></li>\n    
+  </ul> -->
+</div>

@@ -1,0 +1,19 @@
+<div class="container">
+  <div class="row">
+    <span class="column" *ngFor="let category of categories | orderby:'name'">
+      <button [disabled]="loading" class="btn btn-primary" (click)="changeCategory(category.name)">{{category.name}} <a (click)="remove(category._id)">×</a></button>
+    </span>
+  </div>
+  <div class="row">
+    <form (submit)="add()">
+      <input type="text" name="newname" [(ngModel)]="model.newname" #newtitle="ngModel" placeholder="New category" required/>
+      <button [disabled]="loading" class="btn btn-primary" type="submit">Add</button>
+    </form>  
+  </div> 
+  <div class="row">
+    <h3 class="card-title">{{currCategory}}</h3>
+  </div>
+  <div class="row">
+    <app-favourites [category]="currCategory"></app-favourites>
+  </div>
+</div>
